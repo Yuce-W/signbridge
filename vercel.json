@@ -1,0 +1,1 @@
+{"rewrites":[{"source":"/((?!assets/|data/|models/|signs/).*)","destination":"/index.html"}]}

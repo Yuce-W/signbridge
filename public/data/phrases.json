@@ -1,0 +1,14 @@
+[
+{"id":"hello","category":"Greetings","text":"Hello","caption":"Greeting; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"thanks","category":"Greetings","text":"Thank you","caption":"Courtesy phrase; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"wait_here","category":"Waiting","text":"Please wait here","caption":"Wait in this location; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"sit","category":"Directions","text":"Please sit here","caption":"Ask someone to take a seat; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"doctor","category":"Appointments","text":"The doctor will see you shortly","caption":"Appointment update; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"appointment","category":"Appointments","text":"Your appointment is confirmed","caption":"Appointment confirmation; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"reception","category":"Directions","text":"Please go to the reception desk","caption":"Reception directions; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"counter","category":"Directions","text":"Please go to counter 2","caption":"Counter directions; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"assist","category":"General assistance","text":"Do you need assistance?","caption":"Offer assistance; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"water","category":"Basic needs","text":"Would you like water?","caption":"Offer water; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"interpreter","category":"General assistance","text":"Please wait for the interpreter","caption":"Interpreter availability; validated ISL recording not yet supplied","video":null,"validated":false},
+{"id":"toilet","category":"Basic needs","text":"Do you need the toilet?","caption":"Basic needs question; validated ISL recording not yet supplied","video":null,"validated":false}
+]

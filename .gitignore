@@ -1,0 +1,6 @@
+node_modules/
+dist/
+training/datasets/
+training/output/
+*.pyc
+__pycache__/
