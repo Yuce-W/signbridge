@@ -1,0 +1,241 @@
+/* Interpreter Help Page Styles */
+.interpreter-page {
+  padding: 30px 0 60px;
+}
+
+.interpreter-notice {
+  background: rgba(45, 26, 6, 0.95);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-left: 5px solid #f59e0b;
+  border-radius: 14px;
+  padding: 24px;
+  margin: 20px 0 32px;
+  color: #fef3c7;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.interpreter-notice-badge {
+  display: inline-block;
+  background: rgba(245, 158, 11, 0.25);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.interpreter-notice h2 {
+  font-size: 1.35rem;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+
+.interpreter-notice p {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #fde68a;
+  margin: 0;
+}
+
+.interpreter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.interpreter-form label {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #a5ddd0;
+  margin: 16px 0 6px;
+}
+
+.interpreter-form input,
+.interpreter-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(48, 135, 121, 0.35);
+  border-radius: 9px;
+  background: rgba(6, 17, 15, 0.85);
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.interpreter-form input:focus,
+.interpreter-form select:focus {
+  border-color: #5eead4;
+  outline: 2px solid #5eead4;
+}
+
+.protocol-steps {
+  padding-left: 20px;
+  margin: 16px 0;
+}
+
+.protocol-steps li {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #e1efe9;
+  margin-bottom: 12px;
+}
+
+.protocol-steps strong {
+  color: #5eead4;
+}
+
+.directory-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.directory-list li {
+  background: rgba(6, 17, 15, 0.6);
+  border: 1px solid rgba(48, 135, 121, 0.25);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.directory-list strong {
+  display: block;
+  color: #ffffff;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.directory-list p {
+  font-size: 0.84rem;
+  color: #a7c4bc;
+  line-height: 1.45;
+  margin: 0 0 8px;
+}
+
+.external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #5eead4;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  min-height: 36px;
+}
+
+.external-link:hover {
+  color: #ffffff;
+}
+
+.alternatives-list {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.alternatives-list li {
+  font-size: 0.88rem;
+  color: #a7c4bc;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+/* Bedside High Visibility Modal */
+.bedside-modal {
+  width: min(620px, 100%);
+  background: #021a15;
+  border: 2px solid #5eead4;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.85);
+  text-align: center;
+  padding: 32px;
+}
+
+.bedside-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.bedside-badge {
+  background: #14b8a6;
+  color: #02201b;
+  font-weight: 800;
+  font-size: 0.76rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+}
+
+.bedside-symbol {
+  font-size: 4rem;
+  margin-bottom: 12px;
+}
+
+.bedside-card-body h3 {
+  font-size: 1.8rem;
+  color: #5eead4;
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+}
+
+.bedside-main-text {
+  font-size: 1.25rem;
+  color: #ffffff;
+  line-height: 1.45;
+  margin-bottom: 24px;
+}
+
+.bedside-details {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  background: rgba(6, 17, 15, 0.7);
+  border: 1px solid rgba(48, 135, 121, 0.35);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.bedside-details div {
+  text-align: center;
+}
+
+.bedside-details span {
+  display: block;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  color: #a7c4bc;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.bedside-details strong {
+  font-size: 1.15rem;
+  color: #5eead4;
+}
+
+.bedside-subtext {
+  font-size: 0.82rem;
+  color: #fde68a;
+  background: rgba(45, 26, 6, 0.8);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .interpreter-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

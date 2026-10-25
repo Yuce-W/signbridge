@@ -32,18 +32,22 @@
 
 .gesture-guide-sub {
   font-size: 0.86rem;
-  color: #8daea5;
+  color: #a7c4bc;
   margin: 0;
-  line-height: 1.45;
+  line-height: 1.5;
+}
+
+.gesture-guide-sub strong {
+  color: #ffffff;
 }
 
 .gesture-count-pill {
   font-size: 0.72rem;
   font-weight: 700;
   padding: 5px 12px;
-  background: rgba(84, 230, 210, 0.12);
-  color: #54E6D2;
-  border: 1px solid rgba(84, 230, 210, 0.28);
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
   border-radius: 20px;
   white-space: nowrap;
   letter-spacing: 0.04em;
@@ -64,10 +68,11 @@
 .gesture-filter-btn {
   background: rgba(6, 17, 15, 0.6);
   border: 1px solid rgba(48, 135, 121, 0.3);
-  color: #8daea5;
-  font-size: 0.8rem;
+  color: #a7c4bc;
+  font-size: 0.82rem;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 8px 16px;
+  min-height: 40px;
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -118,7 +123,8 @@
 
 .gesture-card:focus-visible {
   border-color: #54E6D2;
-  box-shadow: 0 0 0 3px rgba(84, 230, 210, 0.3);
+  outline: 3px solid #54E6D2;
+  outline-offset: 2px;
 }
 
 .gesture-card-top {
@@ -150,6 +156,14 @@
   border-radius: 12px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.gesture-badge.unvalidated {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  font-size: 0.62rem;
+  font-weight: 800;
 }
 
 .gesture-badge.rose {
@@ -215,9 +229,9 @@
 
 .gesture-instruction {
   margin: 0;
-  font-size: 0.8rem;
-  color: #8daea5;
-  line-height: 1.4;
+  font-size: 0.82rem;
+  color: #a7c4bc;
+  line-height: 1.45;
 }
 
 .gesture-card-footer {
@@ -229,15 +243,25 @@
 }
 
 .gesture-select-hint {
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.76rem;
+  font-weight: 700;
   color: #54E6D2;
-  opacity: 0.8;
   transition: opacity 0.2s ease;
 }
 
-.gesture-card:hover .gesture-select-hint {
-  opacity: 1;
+.gesture-guide-disclaimer {
+  margin-top: 18px;
+  padding: 12px 16px;
+  background: rgba(45, 26, 6, 0.75);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: #fde68a;
+  line-height: 1.45;
+}
+
+.gesture-guide-disclaimer strong {
+  color: #ffffff;
 }
 
 /* --------------------------------------------------------------------------

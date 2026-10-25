@@ -1,0 +1,111 @@
+/* High-Stakes Warning Banner */
+.warning-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(45, 26, 6, 0.92);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  border-left: 5px solid #f59e0b;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 18px 0 28px;
+  color: #fef3c7;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.warning-banner.compact {
+  padding: 12px 16px;
+  margin: 14px 0 20px;
+  font-size: 0.88rem;
+}
+
+.warning-banner-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.warning-banner-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.warning-banner-title {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #fef08a;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px;
+}
+
+.warning-banner-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #fde68a;
+  margin: 0 0 10px;
+}
+
+.warning-banner-text strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.warning-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.warning-banner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #5eead4;
+  font-weight: 700;
+  font-size: 0.86rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+  min-height: 36px;
+}
+
+.warning-banner-link:hover {
+  color: #ffffff;
+}
+
+.warning-banner-link:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 2px;
+}
+
+/* High contrast mode enhancement */
+[data-contrast="high"] .warning-banner {
+  background: #000000;
+  border: 2px solid #f59e0b;
+  color: #ffffff;
+}
+
+[data-contrast="high"] .warning-banner-title {
+  color: #fbbf24;
+}
+
+[data-contrast="high"] .warning-banner-text {
+  color: #ffffff;
+}
+
+[data-contrast="high"] .warning-banner-link {
+  color: #5eead4;
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .warning-banner {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+}

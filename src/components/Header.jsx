@@ -89,7 +89,7 @@ export default function Header() {
 
         {/* RIGHT: CTA & Mobile Hamburger */}
         <div className="topbar-right">
-          <Link to="/about" className="cta-interpreter">
+          <Link to="/interpreter" className="cta-interpreter">
             <span>Request interpreter</span>
             <span className="cta-arrow" aria-hidden="true">↗</span>
           </Link>
@@ -152,11 +152,18 @@ export default function Header() {
               >
                 About & safety
               </NavLink>
+              <NavLink
+                to="/interpreter"
+                className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
+                onClick={() => setMobileOpen(false)}
+              >
+                Interpreter & support
+              </NavLink>
             </nav>
 
             <div className="mobile-nav-footer">
               <Link
-                to="/about"
+                to="/interpreter"
                 className="cta-interpreter mobile-cta"
                 onClick={() => setMobileOpen(false)}
               >

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import CameraView from '../components/CameraView.jsx';
 import GestureGuide from '../components/GestureGuide.jsx';
+import WarningBanner from '../components/WarningBanner.jsx';
 import { vocabulary } from '../data/vocabulary.js';
 import { SequenceBuffer } from '../services/sequenceBuffer.js';
 import { Recognizer } from '../services/recognizer.js';
@@ -21,8 +22,8 @@ export default function PatientMode({ settings }) {
   const processing = useRef(false);
   const lastHands = useRef(0);
 
-  const [model, setModel] = useState('loading');
-  const [status, setStatus] = useState('Camera off');
+  const [model, setModel] = useState('development');
+  const [status, setStatus] = useState('Camera off — select a message manually below');
   const [candidate, setCandidate] = useState(null);
   const [confirmed, setConfirmed] = useState(null);
   const [choice, setChoice] = useState('');
@@ -30,8 +31,9 @@ export default function PatientMode({ settings }) {
 
   useEffect(() => {
     let mounted = true;
-    recognizer.current.load().then((ok) => {
-      if (mounted) setModel(ok ? 'ready' : 'setup');
+    recognizer.current.load().then(() => {
+      // Regardless of prototype weights, automatic recognition is in development and unvalidated
+      if (mounted) setModel('development');
     });
     return () => {
       mounted = false;
@@ -53,58 +55,17 @@ export default function PatientMode({ settings }) {
 
       if (!hasHands(frame.features)) {
         lastHands.current = 0;
-        setStatus('No sign detected — position hands in frame');
+        setStatus('No hands detected in frame — position hands clearly');
         return;
       }
 
       if (!lastHands.current) lastHands.current = frame.timestamp;
 
-      if (model !== 'ready') {
-        setStatus('Hand landmarks detected • Recognition model in setup mode (use manual selection)');
-        return;
-      }
-
-      if (candidate || confirmed || processing.current) {
-        return;
-      }
-
-      if (frame.timestamp - lastHands.current < 350) {
-        setStatus('Positioning hands inside the frame…');
-        return;
-      }
-
-      const seq = buffer.current.sample();
-      if (!seq) {
-        setStatus('Collecting sign movement…');
-        return;
-      }
-
-      processing.current = true;
-      try {
-        const result = await recognizer.current.predict(seq, frame.timestamp);
-
-        if (result.state === 'candidate') {
-          const item = vocabulary.find((v) => v.id === result.label);
-          if (item) selectCandidate(item, 'model');
-          setStatus('Message awaiting confirmation');
-        } else if (result.state === 'uncertain') {
-          setStatus(
-            `Prediction uncertain (${Math.round((result.score || 0) * 100)}%) — select manually or retry`
-          );
-        } else if (result.state === 'recognizing') {
-          setStatus('Recognizing sign…');
-        } else if (result.state === 'idle') {
-          setStatus('Ready — perform a sign');
-        } else if (result.state === 'cooldown') {
-          setStatus('Ready for next message');
-        }
-      } catch (e) {
-        setStatus('Recognition error: ' + e.message);
-      } finally {
-        processing.current = false;
-      }
+      setStatus(
+        'Hand landmarks tracked (experimental) • Automatic recognition in development. Please select your phrase below or from the sample gestures.'
+      );
     },
-    [model, candidate, confirmed]
+    []
   );
 
   const reset = () => {
@@ -127,8 +88,8 @@ export default function PatientMode({ settings }) {
       settings.speech
         ? played
           ? 'Message spoken'
-          : 'Speech unavailable on this device — show text instead'
-        : 'Speech is disabled'
+          : 'Speech unavailable on this device — text is displayed above'
+        : 'Speech is disabled in settings'
     );
   };
 
@@ -141,22 +102,21 @@ export default function PatientMode({ settings }) {
 
   return (
     <div className="patient-page">
+      {/* Prominent High-Stakes Clinical Warning Banner */}
+      <WarningBanner compact />
+
       {/* Page Header (Full Width) */}
       <header className="patient-header">
         <div className="patient-header-content">
-          <div className="eyebrow">PATIENT COMMUNICATION</div>
+          <div className="eyebrow">PATIENT COMMUNICATION PROTOTYPE</div>
           <h1>Let us know what you need.</h1>
           <p className="page-sub">
-            Hold your hands clearly in the camera frame. Gestures are detected automatically, or choose a phrase directly from the guide. You will always review the message before speech is played.
+            Use the working manual phrase selector below to communicate immediately. Camera landmark tracking is available for experimental review; automatic sign recognition is in development.
           </p>
         </div>
         <div className="patient-header-meta">
-          <span className={`status-pill ${model === 'ready' ? 'ready' : 'amber'}`}>
-            {model === 'loading'
-              ? 'Checking model…'
-              : model === 'ready'
-              ? '● Recognizer ready'
-              : '▲ Setup mode'}
+          <span className="status-pill amber">
+            ▲ Sign recognition in development
           </span>
         </div>
       </header>
@@ -170,7 +130,7 @@ export default function PatientMode({ settings }) {
             onStop={() => {
               buffer.current.clear();
               lastHands.current = 0;
-              setStatus('Camera off');
+              setStatus('Camera off — select a message manually below');
             }}
           />
         </div>
@@ -179,8 +139,8 @@ export default function PatientMode({ settings }) {
         <div className="area-recognition panel recognition-panel">
           <div className="section-heading">
             <h2>Your message</h2>
-            <span className={`status-pill ${model === 'ready' ? 'ready' : 'amber'}`}>
-              {model === 'ready' ? 'Live AI recognition' : 'Manual mode active'}
+            <span className="status-pill amber">
+              Manual selection prototype
             </span>
           </div>
 
@@ -188,7 +148,7 @@ export default function PatientMode({ settings }) {
           <div className="live-status-bar" role="status" aria-live="polite">
             <span
               className={`live-status-dot ${
-                status.includes('Recognizing') || status.includes('Collecting')
+                status.includes('tracked')
                   ? 'detecting'
                   : status.includes('off')
                   ? 'idle'
@@ -198,22 +158,20 @@ export default function PatientMode({ settings }) {
             <span>{status}</span>
           </div>
 
-          {model !== 'ready' && (
-            <div className="notice">
-              <strong>AI recognition in setup mode.</strong>
-              <p>
-                A trained model is being configured. You can select any message below or from the gesture guide to communicate immediately.
-              </p>
-            </div>
-          )}
+          <div className="notice" role="note">
+            <strong>Prototype in development: Automatic sign recognition is not available yet.</strong>
+            <p>
+              SignBridge has not undergone independent Indian Sign Language (ISL) validation or clinical testing. You can use the working <strong>manual message selector</strong> below or click any gesture example to communicate immediately. Spoken audio will only play after you verify and confirm the message.
+            </p>
+          </div>
 
           {/* Candidate Review State */}
           {candidate ? (
             <div className="message-card">
               <small>
                 {candidate.source === 'manual'
-                  ? 'MANUALLY SELECTED MESSAGE'
-                  : 'MODEL CANDIDATE · PLEASE VERIFY'}
+                  ? 'MANUALLY SELECTED MESSAGE · PLEASE VERIFY'
+                  : 'PROTOTYPE CANDIDATE · PLEASE VERIFY'}
               </small>
               <h3>{candidate.text}</h3>
               <p>Is this the message you meant to communicate?</p>
@@ -247,8 +205,8 @@ export default function PatientMode({ settings }) {
             /* Idle / Waiting State */
             <div className="empty-card">
               <span>✦</span>
-              <h3>No message yet</h3>
-              <p>Perform a supported sign in front of the camera, or select a phrase below.</p>
+              <h3>No message selected</h3>
+              <p>Select a phrase manually below or from the sample gestures to communicate.</p>
             </div>
           )}
         </div>
@@ -267,7 +225,7 @@ export default function PatientMode({ settings }) {
         <div className="area-manual panel manual-panel">
           <h2>Choose a message manually</h2>
           <p className="muted">
-            A reliable fallback when sign recognition is unavailable or uncertain.
+            Active prototype communication feature. Select any phrase to verify and speak.
           </p>
 
           {/* Quick 1-tap phrase chips */}
@@ -307,6 +265,7 @@ export default function PatientMode({ settings }) {
           </select>
 
           <button
+            type="button"
             className="primary full"
             disabled={!choice}
             onClick={() => {
@@ -320,7 +279,7 @@ export default function PatientMode({ settings }) {
 
         {/* 5. Privacy Badge Area */}
         <div className="area-privacy privacy-mini">
-          ⌁ &nbsp; Local camera processing · No video recording · Your confirmation is required
+          ⌁ &nbsp; Local WebAssembly camera processing · No video recorded or transmitted · Explicit confirmation required before speech
         </div>
       </div>
     </div>

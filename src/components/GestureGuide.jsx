@@ -228,28 +228,32 @@ export default function GestureGuide({ onSelectGesture }) {
   });
 
   return (
-    <section className="gesture-guide-card" aria-label="Supported Sign Language Gestures">
+    <section className="gesture-guide-card" aria-label="Unvalidated Sample Gestures for Research Reference">
       <div className="gesture-guide-header">
         <div>
-          <h3>Supported Hand Gestures</h3>
+          <h3>Unvalidated Sample Gestures (Reference Only)</h3>
           <p className="gesture-guide-sub">
-            Perform any of these signs clearly in front of the camera for automatic recognition.
+            These hand illustrations are unvalidated research prototypes. They have <strong>not</strong> been reviewed or certified by qualified Indian Sign Language (ISL) educators, Deaf community reviewers, or medical interpreters. Click any card to select the message manually.
           </p>
         </div>
-        <span className="gesture-count-pill">{SUPPORTED_GESTURES.length} Validated Signs</span>
+        <span className="gesture-count-pill">10 Prototype Examples · Unvalidated</span>
       </div>
 
       {/* Filter Tabs */}
-      <div className="gesture-filters">
+      <div className="gesture-filters" role="tablist" aria-label="Filter gesture categories">
         <button
           type="button"
+          role="tab"
+          aria-selected={filter === 'all'}
           className={`gesture-filter-btn ${filter === 'all' ? 'active' : ''}`}
           onClick={() => setFilter('all')}
         >
-          All Signs ({SUPPORTED_GESTURES.length})
+          All Examples ({SUPPORTED_GESTURES.length})
         </button>
         <button
           type="button"
+          role="tab"
+          aria-selected={filter === 'urgent'}
           className={`gesture-filter-btn ${filter === 'urgent' ? 'active' : ''}`}
           onClick={() => setFilter('urgent')}
         >
@@ -257,6 +261,8 @@ export default function GestureGuide({ onSelectGesture }) {
         </button>
         <button
           type="button"
+          role="tab"
+          aria-selected={filter === 'needs'}
           className={`gesture-filter-btn ${filter === 'needs' ? 'active' : ''}`}
           onClick={() => setFilter('needs')}
         >
@@ -264,6 +270,8 @@ export default function GestureGuide({ onSelectGesture }) {
         </button>
         <button
           type="button"
+          role="tab"
+          aria-selected={filter === 'responses'}
           className={`gesture-filter-btn ${filter === 'responses' ? 'active' : ''}`}
           onClick={() => setFilter('responses')}
         >
@@ -277,7 +285,7 @@ export default function GestureGuide({ onSelectGesture }) {
           <div
             key={item.id}
             className="gesture-card"
-            role="listitem"
+            role="button"
             tabIndex={0}
             onClick={() => onSelectGesture?.(item)}
             onKeyDown={(e) => {
@@ -286,15 +294,18 @@ export default function GestureGuide({ onSelectGesture }) {
                 onSelectGesture?.(item);
               }
             }}
-            title={`Click to review "${item.text}"`}
+            aria-label={`Select phrase manually: ${item.text}. Movement: ${item.instruction}`}
           >
             <div className="gesture-card-top">
-              <div className="gesture-icon-box">
+              <div className="gesture-icon-box" aria-hidden="true">
                 <GestureIcon type={item.iconType} />
               </div>
-              <span className={`gesture-badge ${item.badgeColor}`}>
-                {item.category}
-              </span>
+              <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                <span className="gesture-badge unvalidated">SAMPLE ONLY</span>
+                <span className={`gesture-badge ${item.badgeColor}`}>
+                  {item.category}
+                </span>
+              </div>
             </div>
 
             <div className="gesture-card-body">
@@ -303,10 +314,14 @@ export default function GestureGuide({ onSelectGesture }) {
             </div>
 
             <div className="gesture-card-footer">
-              <span className="gesture-select-hint">Click to select manually ↗</span>
+              <span className="gesture-select-hint">Select message manually ↗</span>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="gesture-guide-disclaimer">
+        ℹ <strong>Prototype Note:</strong> Automatic sign recognition is currently in development and unvalidated. These gesture samples illustrate potential interaction design and do not represent verified ISL clinical signs.
       </div>
     </section>
   );
