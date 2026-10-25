@@ -1,0 +1,253 @@
+/* ==========================================================================
+   SignBridge Gesture Guide Component
+   ========================================================================== */
+
+.gesture-guide-card {
+  background: rgba(10, 26, 23, 0.85);
+  border: 1px solid rgba(48, 135, 121, 0.3);
+  border-radius: 18px;
+  padding: 24px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  margin-top: 24px;
+  box-sizing: border-box;
+}
+
+.gesture-guide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.gesture-guide-header h3 {
+  font-size: 1.25rem;
+  margin: 0 0 6px;
+  color: #ffffff;
+  font-family: 'Manrope', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.gesture-guide-sub {
+  font-size: 0.86rem;
+  color: #8daea5;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.gesture-count-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  background: rgba(84, 230, 210, 0.12);
+  color: #54E6D2;
+  border: 1px solid rgba(84, 230, 210, 0.28);
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+/* --------------------------------------------------------------------------
+   Category Filter Tabs
+   -------------------------------------------------------------------------- */
+.gesture-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(48, 135, 121, 0.2);
+  padding-bottom: 14px;
+}
+
+.gesture-filter-btn {
+  background: rgba(6, 17, 15, 0.6);
+  border: 1px solid rgba(48, 135, 121, 0.3);
+  color: #8daea5;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gesture-filter-btn:hover {
+  color: #54E6D2;
+  border-color: #54E6D2;
+  background: rgba(84, 230, 210, 0.08);
+}
+
+.gesture-filter-btn.active {
+  background: rgba(84, 230, 210, 0.16);
+  color: #54E6D2;
+  border-color: #54E6D2;
+}
+
+/* --------------------------------------------------------------------------
+   Gesture Cards Grid
+   -------------------------------------------------------------------------- */
+.gesture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.gesture-card {
+  background: rgba(6, 17, 15, 0.72);
+  border: 1px solid rgba(48, 135, 121, 0.25);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.gesture-card:hover {
+  transform: translateY(-2px);
+  border-color: #54E6D2;
+  background: rgba(8, 24, 21, 0.9);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.gesture-card:focus-visible {
+  border-color: #54E6D2;
+  box-shadow: 0 0 0 3px rgba(84, 230, 210, 0.3);
+}
+
+.gesture-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gesture-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(12, 38, 33, 0.8);
+  border: 1px solid rgba(48, 135, 121, 0.35);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.gesture-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.gesture-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.gesture-badge.rose {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.gesture-badge.red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.gesture-badge.amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.gesture-badge.cyan {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.gesture-badge.teal {
+  background: rgba(45, 212, 191, 0.15);
+  color: #5eead4;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.gesture-badge.purple {
+  background: rgba(167, 139, 250, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
+.gesture-badge.emerald {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.gesture-badge.slate {
+  background: rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.gesture-card-body {
+  flex: 1;
+}
+
+.gesture-phrase {
+  margin: 0 0 6px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: 'Manrope', system-ui, sans-serif;
+  letter-spacing: -0.015em;
+}
+
+.gesture-instruction {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #8daea5;
+  line-height: 1.4;
+}
+
+.gesture-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(48, 135, 121, 0.15);
+  padding-top: 8px;
+}
+
+.gesture-select-hint {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #54E6D2;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.gesture-card:hover .gesture-select-hint {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .gesture-grid {
+    grid-template-columns: 1fr;
+  }
+  .gesture-guide-card {
+    padding: 18px;
+  }
+}

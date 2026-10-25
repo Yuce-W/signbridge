@@ -4,3 +4,5 @@ training/datasets/
 training/output/
 *.pyc
 __pycache__/
+.vercel
+.env*

@@ -1,0 +1,204 @@
+/* ==========================================================================
+   SignBridge Patient Mode Styles
+   ========================================================================== */
+
+.patient-page {
+  padding: 32px 0 64px;
+  box-sizing: border-box;
+}
+
+/* Header spanning full width above the two columns */
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(48, 135, 121, 0.22);
+  padding-bottom: 24px;
+}
+
+.patient-header-content {
+  flex: 1;
+}
+
+.patient-header-content h1 {
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  margin: 10px 0 10px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.patient-header-content .page-sub {
+  color: #9cb8b0;
+  font-size: 1.02rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 740px;
+}
+
+.patient-header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Balanced Two-Column Grid: Left (~58%), Right (~42%) */
+.patient-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, 1fr);
+  grid-template-areas:
+    "camera recognition"
+    "guide manual"
+    "guide privacy";
+  gap: 32px;
+  align-items: start;
+}
+
+.area-camera {
+  grid-area: camera;
+  min-width: 0;
+}
+
+.area-recognition {
+  grid-area: recognition;
+  min-width: 0;
+}
+
+.area-guide {
+  grid-area: guide;
+  min-width: 0;
+}
+
+.area-manual {
+  grid-area: manual;
+  min-width: 0;
+}
+
+.area-privacy {
+  grid-area: privacy;
+  min-width: 0;
+}
+
+/* Recognition Panel */
+.recognition-panel {
+  border: 1px solid rgba(84, 230, 210, 0.3) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.live-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  background: rgba(6, 17, 15, 0.65);
+  border: 1px solid rgba(48, 135, 121, 0.25);
+  margin: 12px 0 16px;
+  font-size: 0.84rem;
+  color: #a5ddd0;
+}
+
+.live-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #54E6D2;
+  box-shadow: 0 0 8px #54E6D2;
+  flex-shrink: 0;
+}
+
+.live-status-dot.idle {
+  background: #8daea5;
+  box-shadow: none;
+}
+
+.live-status-dot.detecting {
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+}
+
+/* Quick Select Pills in Manual Panel */
+.quick-phrase-label {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7fa89e;
+  font-weight: 700;
+  margin: 14px 0 8px;
+}
+
+.quick-phrase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.quick-phrase-chip {
+  background: rgba(6, 17, 15, 0.7);
+  border: 1px solid rgba(48, 135, 121, 0.3);
+  color: #e1efe9;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-phrase-chip:hover {
+  border-color: #54E6D2;
+  background: rgba(84, 230, 210, 0.1);
+  color: #ffffff;
+}
+
+.quick-phrase-chip.active {
+  border-color: #54E6D2;
+  background: rgba(84, 230, 210, 0.18);
+  color: #54E6D2;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 880px) {
+  .patient-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "camera"
+      "recognition"
+      "guide"
+      "manual"
+      "privacy";
+    gap: 24px;
+  }
+  .patient-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .patient-header-meta {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .patient-page {
+    padding: 20px 0 44px;
+  }
+  .patient-header {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+  }
+  .patient-header-content h1 {
+    font-size: 1.85rem;
+  }
+  .quick-phrase-grid {
+    grid-template-columns: 1fr;
+  }
+}
